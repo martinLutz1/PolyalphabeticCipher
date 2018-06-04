@@ -3,10 +3,13 @@
 /* jshint esnext:true */
 /* jshint browser:true */
 
-class CaesarCipher {
+class RotX {
    constructor() {
       this.shiftCipher = new ShiftCipher();
-      this.shiftCipher.setAlphabet("abcdefghijklmnopqrstuvwxyz");
+   }
+
+   setAlphabet(alphabet) {
+      this.shiftCipher.setAlphabet(alphabet);
    }
 
    setKey(key) {
@@ -14,10 +17,10 @@ class CaesarCipher {
    }
 
    encrypt(plaintext) {
-      return this.shiftCipher.encrypt(plaintext);
+      return this.caesarCipher.encrypt(plaintext);
    }
 
    decrypt(ciphertext) {
-      return this.shiftCipher.decrypt(ciphertext);
+      return this.caesarCipher.decrypt(ciphertext);
    }
 }

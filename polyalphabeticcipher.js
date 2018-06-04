@@ -4,9 +4,13 @@
 /* jshint browser:true */
 
 class PolyalphabeticCipher {
-   constructor(alphabet) {
+   constructor() {
       this.key = [];
-      this.alphabet = Object.freeze(this._alphabetToArray(alphabet));
+      this.alphabet = [];
+   }
+
+   setAlphabet(alphabet) {
+      this.alphabet = this._alphabetToArray(alphabet);
    }
 
    setKey(key) {
@@ -56,21 +60,15 @@ class PolyalphabeticCipher {
    }
 
    _transformChar(char, charArray, transformCharArray) {
-      let index = this._charToIndex(char, charArray);
+      let index = charArray.findIndex(function(element) {
+         return element == char;
+      });
+
       if (index === -1) {
          return char;
       }
       else {
          return transformCharArray[index];
       }
-   }
-
-   _charToIndex(char, charArray) {
-      for (let i = 0; i < charArray.length; i++) {
-         if (charArray[i] === char) {
-            return i;
-         }
-      }
-      return -1;
    }
 }
