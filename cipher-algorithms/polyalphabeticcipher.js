@@ -16,7 +16,8 @@ class PolyalphabeticCipher {
    setKey(key) {
       if (key.length * 2 !== this.alphabet.length) {
          throw "Cannot set key. The key must be exactly "
-            + (this.alphabet.length / 2).toString() + " characters long.";
+            + (this.alphabet.length / 2).toString() + " characters long. Current length: "
+            + key.length + " characters.";
       }
 
       this.key = [];
@@ -24,6 +25,26 @@ class PolyalphabeticCipher {
          this.key.push(key.charAt(i).toLowerCase());
          this.key.push(key.charAt(i).toUpperCase());
       }
+   }
+
+   getKey() {
+      let printableKey = "";
+      for (let i = 0; i < this.key.length; i++) {
+         if (i%2 === 0) {
+            printableKey += this.key[i];
+         }
+      }
+      return printableKey;
+   }
+
+   getAlphabet() {
+      let printableAlphabet = "";
+      for (let i = 0; i < this.alphabet.length; i++) {
+         if (i%2 === 0) {
+            printableAlphabet += this.alphabet[i];
+         }
+      }
+      return printableAlphabet;
    }
 
    encrypt(plaintext) {
@@ -61,9 +82,8 @@ class PolyalphabeticCipher {
 
    _transformChar(char, charArray, transformCharArray) {
       let index = charArray.findIndex(function(element) {
-         return element == char;
+         return (element == char);
       });
-
       if (index === -1) {
          return char;
       }
